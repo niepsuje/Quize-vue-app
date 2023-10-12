@@ -1,6 +1,8 @@
 <script setup>
-  // import {RouterView} from "vue-router"
-  // import QuizesView from "./views/QuizesView.vue"
+  import q from "./data/quizes.json"
+  import {ref} from "vue"
+
+  const quizes = ref(q)
 
 </script>
 
@@ -11,11 +13,11 @@
       <input type="text" placeholder="Search..."/>
     </header>
     <div class="options-container">
-      <div class="card">
-        <img src="https://img.freepik.com/free-vector/counting-number-0-9-math-symbols_1308-104139.jpg?size=626&ext=jpg&ga=GA1.1.1413502914.1696982400&semt=sph" alt="">
+      <div v-for="quiz in quizes" :key="quiz.id" class="card">
+        <img :src="quiz.img" alt="">
         <div class="card-text">
-          <h2>Math</h2>
-          <p>15 questions</p>
+          <h2>{{ quiz.name }}</h2>
+          <p>{{ quiz.questions.length }} questions</p>
         </div>
       </div>
     </div>
@@ -60,7 +62,7 @@
     overflow: hidden;
     border-radius: 2%;
     box-shadow: 1px 1px 10px rgb(123, 161, 9);
-    margin-bottom: 300px;
+    margin-bottom: 25px;
     margin-right: 25px;
     cursor: pointer;
   }
