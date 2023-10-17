@@ -50,7 +50,6 @@
     padding: 8px;
     border-radius: 8px;
   }
-
   .options-container {
     display: flex;
     flex-wrap: wrap;
