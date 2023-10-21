@@ -1,14 +1,21 @@
+<script setup>
+const { question } = defineProps({
+    question: Object,
+});
+
+</script>
+
 <template>
     <div class="question-container">
         <h1 class="question">
-            What is the chemicalvalue of table salt?
+            {{question.text}}
         </h1>
     </div>
-    <div class="option-container">
-        <div class="option">
-            <p class="option-label">A</p>
+    <div class="options-container">
+        <div v-for="option in question.options" :key="option.id" class="option">
+            <p class="option-label">{{option.label}}</p>
             <div class="option-value">
-                <p>NaCl</p>
+                <p>{{option.text}}</p>
             </div>
         </div>
     </div>
