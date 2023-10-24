@@ -1,6 +1,7 @@
 <script setup>
-    const {questionStatus} = defineProps({
+    const {questionStatus, barPercentage} = defineProps({
         questionStatus: Object,
+        barPercentage: Object,
     })
 </script>
 
@@ -8,7 +9,7 @@
             <header>
             <h4>Question {{ questionStatus }}</h4>
             <div class="bar">
-                <div class="completion"></div>
+                <div class="completion" :style="{width: barPercentage}"></div>
             </div>
         </header>
 </template>
@@ -29,6 +30,6 @@
     .completion {
         height: 100%;
         width: 0%;
-        background-color: rgb(213, 182, 144);    
+        background-color: rgb(161, 52, 52);    
     }
 </style>
