@@ -1,6 +1,7 @@
 <script setup>
     import Question from "../components/Question.vue"
     import QuizHeader from "../components/QuizHeader.vue"
+    import Result from "../components/Result.vue"
     import {useRoute} from "vue-router"
     import { ref, watch, computed } from "vue"
     import quizes from "../data/quizes.json"
@@ -43,6 +44,7 @@
                 :question="quiz.questions[currentQuestionIndex]"
                 @selectOption="onOptionSelected"
             />
+            <Result />
         </div>
         <button @click="currentQuestionIndex++">Next Question</button>
         
