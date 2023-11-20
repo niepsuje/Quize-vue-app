@@ -11,6 +11,7 @@
     const quiz = quizes.find(q => q.id === quizId)
     const currentQuestionIndex = ref(0)
     const numberOfCorrectAnswers = ref(0)
+    const showResults = ref(false)
 
     // const questionStatus = ref(`${currentQuestionIndex.value}/${quiz.questions.length}`)
 
@@ -27,6 +28,10 @@
             numberOfCorrectAnswers.value++
         }
 
+        if(quiz.questions.length -1 === currentQuestionIndex.value){
+            showResults.value = true
+        }
+
         currentQuestionIndex.value++
     }
 
@@ -34,19 +39,24 @@
 
 <template>
     <div>
-        {{ barPercentage }}
+        <!-- {{ barPercentage }} -->
         <QuizHeader 
             :questionStatus="questionStatus"
             :barPercentage="barPercentage"
         />
         <div>
             <Question 
+                v-if="!showResults"
                 :question="quiz.questions[currentQuestionIndex]"
                 @selectOption="onOptionSelected"
             />
-            <Result />
+            <Result 
+                v-else
+                :quizQuestionLength="quiz.questions.length"
+                :numberOfCorrectAnswers="numberOfCorrectAnswers"
+            />
         </div>
-        <button @click="currentQuestionIndex++">Next Question</button>
+        <!-- <button @click="currentQuestionIndex++">Next Question</button> -->
         
     </div>
 </template>
